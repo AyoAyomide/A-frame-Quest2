@@ -10,16 +10,19 @@
   <a-scene>
 
     <!-- Left wall -->
-    <a-box position="-2 1 0" rotation="0 90 0" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box>
+    <!-- <a-box position="-2 1 0" rotation="0 90 0" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box> -->
     <!-- Right wall -->
-    <a-box position="2 1 0" rotation="0 90 0" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box>
+    <!-- <a-box position="2 1 0" rotation="0 90 0" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box> -->
     <!-- Back wall -->
-    <a-box position="0 1 -2" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box>
+    <!-- <a-box position="0 1 -2" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box> -->
     <!-- Front wall -->
-    <a-box position="0 1 2" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box>
+    <!-- <a-box position="0 1 2" width="4" height="2" depth="0.1" color="#D8D8D8"></a-box> -->
 
-    <a-entity camera look-controls
-      orbit-controls="target: 0 1.6 -0.5; minDistance: 0.5; maxDistance: 180; initialPosition: 0 5 15"></a-entity>
+    <a-entity id="player" position="0 0 0" oculus-touch-controls>
+      <a-camera></a-camera>
+    </a-entity>
+
+    <!-- <a-entity camera look-controls orbit-controls="target: 0 1.6 -0.5; minDistance: 0.5; maxDistance: 180; initialPosition: 0 5 15"></a-entity> -->
     <a-sky environment="preset:egypt"></a-sky>
 
   </a-scene>
