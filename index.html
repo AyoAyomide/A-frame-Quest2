@@ -2,53 +2,32 @@
 
 <head>
   <script src="https://aframe.io/releases/1.3.0/aframe.js"></script>
-  <!-- <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script> -->
-
 </head>
 
 <body>
-  <a-scene>
+  <script>
+
+  </script>
+  <a-scene antialias="true">
     <a-assets>
-      <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
-      <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-      <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
-      <audio id="backgroundSound" src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav" autoplay
-        preload></audio>
+      <img src="">
     </a-assets>
 
-    <a-box position="0 2 -5" rotation="0 45 45" scale="2 2 2" src="#boxTexture"
-      animation__position="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true"
-      animation__mouseenter="property: scale; to: 2.3 2.3 2.3; dur: 300; startEvents: mouseenter"
-      animation__mouseleave="property: scale; to: 2 2 2; dur: 300; startEvents: mouseleave"></a-box>
-    <a-plane rotation="-90 0 0" width="5" height="5" src="#groundTexture" repeat="1 1"></a-plane>
+    <!-- <a-box position="0 2 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box> -->
 
-    <a-sky src="#skyTexture"></a-sky>
-    <!-- <a-entity environment="preset: egypt; dressingAmount: 10"></a-entity> -->
-    <a-light type="point" intensity="3" position="2 4 4" color="#445451"></a-light>
+    <!-- <a-sky src="./sky1.jpg"></a-sky> -->
+    <a-sky src="https://live.staticflickr.com/2931/33546526801_8ec7ad971d_k.jpg"></a-sky>
+    <!-- <a-light type="point" intensity="3" position="2 4 4" color="#445451"></a-light> -->
+
+    <a-entity hand-controls laser-controls raycaster="far: 2"></a-entity>
+    <!-- <a-plane width="5" height="5" position="0 0 -2" color="red" rotation="-90 0 0"></a-plane> -->
 
     <a-camera>
       <a-cursor></a-cursor>
     </a-camera>
 
-    <a-entity text="value: Hello, A-Frame; color: #BBB" position="-0.9 0.2 -3" scale="2 2 2"></a-entity>
-
-    <a-sound src="#backgroundSound" position="-3 1 -4"></a-sound>
-
   </a-scene>
 </body>
-<script>
-  AFRAME.registerComponent('scale-on-mouseenter', {
-    schema: {
-      to: { default: "2.5 2.5 2.5", type: "vec3" }
-    },
-    init: function () {
-      let data = this.data;
-      let el = this.el;
-      this.el.addEventListener('mouseenter', function () {
-        el.object3D.scale.copy(data.to);
-      })
-    }
-  })
-</script>
+
 
 </html>

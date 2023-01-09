@@ -1,0 +1,21 @@
+{
+  "name": "vr-a-frame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "five-server --port=8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AyoAyomide/A-frame-Quest2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AyoAyomide/A-frame-Quest2/issues"
+  },
+  "homepage": "https://github.com/AyoAyomide/A-frame-Quest2#readme"
+}
