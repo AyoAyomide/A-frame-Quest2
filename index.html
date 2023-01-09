@@ -2,8 +2,6 @@
 
 <head>
   <script src="https://aframe.io/releases/1.3.0/aframe.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
-  <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 </head>
 
 <body>
@@ -21,14 +19,11 @@
     <a-sky src="https://live.staticflickr.com/2931/33546526801_8ec7ad971d_k.jpg"></a-sky>
     <!-- <a-light type="point" intensity="3" position="2 4 4" color="#445451"></a-light> -->
 
-    <a-entity>
-      <a-camera></a-camera>
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
-    </a-entity>
-    <!-- hover & drag-drop won't have any obvious effect without some additional event handlers or components. See the examples page for more -->
-    <a-box hoverable grabbable stretchable draggable droppable color="blue" position="0 0 -1"></a-box>
-  
+    <a-entity oculus-touch-controls="hand: left"></a-entity>
+    <a-entity oculus-touch-controls="hand: right"></a-entity>
+    <a-camera>
+      <a-cursor></a-cursor>
+    </a-camera>
 
   </a-scene>
 </body>
