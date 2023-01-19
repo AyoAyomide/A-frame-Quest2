@@ -5,16 +5,50 @@
   <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
 </head>
 
+<script>
+
+</script>
+
 <body>
 
-  <a-scene renderer="antialias: true">
+  <a-scene renderer="antialias: true" stats>
 
-    <a-entity id="prefab" geometry="primitive: box" material="color: red" width="1" height="1"></a-entity>
+    <a-asset>
+      <img id="floorTexture" src="./tx_2.jpg">
+      <img id="ceilingTexture" src="./tx_3.jpg">
+      <img id="wallTexture" src="./tx_5.jpg">
+    </a-asset>
+
+    <!-- <a-entity environment="preset: default;
+    dressing:none;
+    skyType: gradient;
+    skyColor:#00C9FF;
+    horizonColor:#5691c8;
+    grid:1x1;
+    gridColor:#525252FF;
+    groud:none;
+    groundTexture:none"></a-entity> -->
+    <a-sky color="black"></a-sky>
+
+    <a-plane id="floor" width="20" height="20" src="#floorTexture" position="0 0.5 -4" repeat="3 3" rotation="-90 0 0"></a-plane>
+    <a-plane id="walls">
+      <a-plane id="wall_right" width="20" height="5" src="#wallTexture" repeat="3 1" position="-10 3 -4"
+        rotation="0 90 0"></a-plane>
+      <a-plane id="wall_left" width="20" height="5" src="#wallTexture" repeat="3 1" position="10 3 -4"
+        rotation="0 -90 0"></a-plane>
+      <a-plane id="wall_back" width="20" height="5" src="#wallTexture" repeat="3 1" position="0 3 6"
+        rotation="-180 0 0"></a-plane>
+      <a-plane id="wall_front" width="20" height="5" src="#wallTexture" repeat="3 1" position="0 3 -14"></a-plane>
+    </a-plane>
+    <a-plane id="roof" width="20" height="20" src="#ceilingTexture" position="0 5.5 -4" repeat="1 3" rotation="90 0 0"></a-plane>
+
+
+    <!-- <a-entity id="prefab" move geometry="primitive: box" material="color: red" width="1" height="1"
+      position="0 0 -5"></a-entity> -->
 
     <a-entity oculus-touch-controls="hand: left" laser-controls="hand:left"></a-entity>
     <a-entity oculus-touch-controls="hand: right" laser-controls="hand:right"></a-entity>
 
-    <a-entity environment="preset: egypt;dressing:none"></a-entity>
 
     <a-camera>
       <a-cursor raycaster="objects: [data-raycastable]"></a-cursor>
@@ -22,14 +56,7 @@
 
   </a-scene>
   <script>
-    let prefab = document.querySelector('#prefab');
 
-    prefab.addEventListener('loaded', () => {
-      console.log("I'm loaded");
-      prefab.onload = () => { console.log('hey sam') }
-      console.log(prefab);
-
-    })
 
   </script>
 </body>
