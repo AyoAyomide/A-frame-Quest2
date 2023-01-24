@@ -63,17 +63,21 @@
 
   </a-scene>
   <script>
-    // the text object
-    let text = document.querySelector('#text_sign');
-    text.setAttribute('value', 'Hey james');
-
     // the controller
-    let controller = document.querySelector('.questControl');
-    controller.addEventListener('triggerdown', function () {
-      text.setAttribute('value', 'trigger pressed');
+    let controller = document.querySelectorAll('.questControl');
+    controller.forEach(data => {
+
+      data.addEventListener('triggerdown', function () {
+        text.setAttribute('value', 'Trigger down pressed');
+      })
+
+      data.addEventListener('gripdown', function () {
+        text.setAttribute('value', 'Grip down pressed');
+      })
+
+      console.log(data);
+
     })
-    let data = controller.components;
-    console.log(controller, data);
   </script>
 </body>
 
