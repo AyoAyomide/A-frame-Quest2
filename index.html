@@ -6,6 +6,19 @@
 
 <script>
 
+  AFRAME.registerComponent('thumbstick-logging', {
+    init: function () {
+      this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+    },
+    logThumbstick: function (evt) {
+      let text = document.querySelector('#text_sign');
+      if (evt.detail.y > 0.95) { text.setAttribute('value', 'DOWN'); }
+      if (evt.detail.y < -0.95) { text.setAttribute('value', 'UP'); }
+      if (evt.detail.x < -0.95) { text.setAttribute('value', 'LEFT'); }
+      if (evt.detail.x > 0.95) { text.setAttribute('value', 'RIGHT'); }
+    }
+  });
+
 </script>
 
 <body>
@@ -35,20 +48,32 @@
     <a-plane id="roof" width="10" height="10" src="#ceilingTexture" position="0 2.5 -4" repeat="4 4"
       rotation="90 0 0"></a-plane>
 
-    <a-text value="Hello World !!!" align="center" geometry="primitive:plane; width:5%; height:2" material="color:black" position="0 1.5 -5" color="white" rotation="0 0 0"></a-text>
+    <a-text id="text_sign" value="Hello World !!!" align="center" geometry="primitive:plane; width:5%; height:2"
+      material="color:black" position="0 1.5 -5" color="white" rotation="0 0 0"></a-text>
 
-    <a-entity oculus-touch-controls="hand: left" laser-controls="hand:left"></a-entity>
-    <a-entity oculus-touch-controls="hand: right" laser-controls="hand:right"></a-entity>
+    <a-entity class="questControl" thumbstick-logging oculus-touch-controls="hand: left"
+      laser-controls="hand:left"></a-entity>
+    <a-entity class="questControl" thumbstick-logging oculus-touch-controls="hand: right"
+      laser-controls="hand:right"></a-entity>
 
 
     <a-camera>
-      <a-cursor raycaster="objects: [data-raycastable]"></a-cursor>
+      <a-cursor id="cursor" raycaster="objects: [data-raycastable]"></a-cursor>
     </a-camera>
 
   </a-scene>
   <script>
+    // the text object
+    let text = document.querySelector('#text_sign');
+    text.setAttribute('value', 'Hey james');
 
-
+    // the controller
+    let controller = document.querySelector('.questControl');
+    controller.addEventListener('triggerdown', function () {
+      text.setAttribute('value', 'trigger pressed');
+    })
+    let data = controller.components;
+    console.log(controller, data);
   </script>
 </body>
 
