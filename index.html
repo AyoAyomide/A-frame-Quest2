@@ -19,6 +19,17 @@
     }
   });
 
+  AFRAME.registerComponent('button-logging', {
+    init: function () {
+      this.el.addEventListener('triggerdown', this.logButton);
+      this.el.addEventListener('gripdown', this.logButton);
+    },
+    logButton: function (evt) {
+      let text = document.querySelector('#text_sign');
+      text.setAttribute('value', evt.detail);
+    }
+  });
+
 </script>
 
 <body>
@@ -51,9 +62,9 @@
     <a-text id="text_sign" value="Hello World !!!" align="center" geometry="primitive:plane; width:5%; height:2"
       material="color:black" position="0 1.5 -5" color="white" rotation="0 0 0"></a-text>
 
-    <a-entity class="questControl" thumbstick-logging oculus-touch-controls="hand: left"
+    <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
       laser-controls="hand:left"></a-entity>
-    <a-entity class="questControl" thumbstick-logging oculus-touch-controls="hand: right"
+    <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: right"
       laser-controls="hand:right"></a-entity>
 
 
@@ -64,20 +75,18 @@
   </a-scene>
   <script>
     // the controller
-    let controller = document.querySelectorAll('.questControl');
-    controller.forEach(data => {
+    let controller = document.querySelector('.questControl');
 
-      data.addEventListener('triggerdown', function () {
-        text.setAttribute('value', 'Trigger down pressed');
-      })
 
-      data.addEventListener('gripdown', function () {
-        text.setAttribute('value', 'Grip down pressed');
-      })
-
-      console.log(data);
-
+    controller.addEventListener('triggerdown', function () {
+      text.setAttribute('value', 'Trigger down pressed');
     })
+
+    controller.addEventListener('gripdown', function () {
+      text.setAttribute('value', 'Grip down pressed');
+    })
+
+
   </script>
 </body>
 
