@@ -1,7 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A-frame</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.js"></script>
+
 </head>
 
 <script>
@@ -33,12 +39,11 @@
 </script>
 
 <body>
-
   <a-scene renderer="antialias: true" stats>
 
     <a-asset>
       <img id="sky" src="./assets/sky/sky1.jpg">
-      <img id="floorTexture" src="./assets/tx_10.jpg">
+      <img id="floorTexture" src="./assets/tx_2.jpg">
       <img id="ceilingTexture" src="./assets/tx_9.jpg">
       <img id="wallTexture" src="./assets/tx_5.jpg">
     </a-asset>
@@ -77,6 +82,17 @@
     // the controller
     let controller = document.querySelector('.questControl');
 
+    const constraints = {
+      'video': true,
+      'audio': true
+    }
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(stream => {
+        console.log('Got MediaStream:', stream);
+      })
+      .catch(error => {
+        console.error('Error accessing media devices.', error);
+      });
 
     controller.addEventListener('triggerdown', function () {
       text.setAttribute('value', 'Trigger down pressed');
@@ -89,6 +105,5 @@
 
   </script>
 </body>
-
 
 </html>
