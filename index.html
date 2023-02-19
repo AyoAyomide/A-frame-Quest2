@@ -82,18 +82,6 @@
     // the controller
     let controller = document.querySelector('.questControl');
 
-    const constraints = {
-      'video': true,
-      'audio': true
-    }
-    navigator.mediaDevices.getUserMedia(constraints)
-      .then(stream => {
-        console.log('Got MediaStream:', stream);
-      })
-      .catch(error => {
-        console.error('Error accessing media devices.', error);
-      });
-
     controller.addEventListener('triggerdown', function () {
       text.setAttribute('value', 'Trigger down pressed');
     })
