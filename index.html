@@ -22,13 +22,15 @@
     logThumbstick: function (evt) {
       if (evt.detail.y > 0.95) {
         text1.setAttribute('value', 'DOWN');
-        setTimeout(() => {
-          text1.setAttribute('value', 'Another function that run when down is clicked');
-        }, 2000)
+        this.moveBox();
       }
       if (evt.detail.y < -0.95) { text1.setAttribute('value', 'UP'); }
       if (evt.detail.x < -0.95) { text1.setAttribute('value', 'LEFT'); }
       if (evt.detail.x > 0.95) { text1.setAttribute('value', 'RIGHT'); }
+    },
+    moveBox: function () {
+      let sampleBox = document.querySelector('#sampleBox');
+      sampleBox.object3D.position.z += 0.5;
     }
   });
 
@@ -47,6 +49,7 @@
     init: function () {
       let text2 = document.querySelector('#text2');
       let text3 = document.querySelector('#text3');
+      this.el.object3D.position.z = 2;
     },
     tick: function () {
       text2.setAttribute('value', JSON.stringify(this.el.object3D.rotation))
@@ -73,12 +76,14 @@
     <!-- <a-text id="text_sign" value="Hello World !!!" align="center" geometry="primitive:plane; width:5%; height:2"
       material="color:black" position="0 1.5 -5" color="white" rotation="0 0 0"></a-text> -->
 
-    <a-plane material="color:black" position="0 1.5 -5" rotation="0 0 0" width="5%" height="2">
+    <a-plane material="color:black" position="0 4 -5" rotation="0 0 0" width="5%" height="2">
       <a-text id="text1" color="white" value="Button text" position="-2 0.5 0"></a-text>
       <a-text id="text2" color="white" value="Camera rotation" position="-2 0 0" wrap-count="80%" align="left"></a-text>
       <a-text id="text3" color="white" value="Camera position" position="-2 -0.4 0" wrap-count="55%"
         align="left"></a-text>
     </a-plane>
+
+    <a-box id="sampleBox" width="0.5" height="0.5" material="color:red" position="0 1 -1"></a-box>
 
     <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
       laser-controls="hand:left"></a-entity>
