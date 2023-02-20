@@ -19,18 +19,15 @@
       let text1 = document.querySelector('#text1');
       this.el.addEventListener('thumbstickmoved', this.logThumbstick);
 
-      function moveBox() {
-        text1.setAttribute('value', 'DOWN');
+      moveBox = () => {
         let sampleBox = document.querySelector('#sampleBox');
-        sampleBox.object3D.position.z += 0.5;
-        setTimeout(() => {
-          text1.setAttribute('value', JSON.stringify(sampleBox.object3D.position));
-        }, 2000)
+        sampleBox.object3D.position.z -= 0.5;
       }
 
     },
     logThumbstick: function (evt) {
       if (evt.detail.y > 0.95) {
+        text1.setAttribute('value', 'DOWN');
         moveBox();
       }
       if (evt.detail.y < -0.95) { text1.setAttribute('value', 'UP'); }
