@@ -38,7 +38,7 @@
       this.el.addEventListener('gripdown', this.logButton);
     },
     logButton: function (evt) {
-      let text = document.querySelector('#text_sign');
+      let text = document.querySelector('#text1');
       text.setAttribute('value', JSON.stringify(evt));
     }
   });
@@ -46,13 +46,11 @@
   AFRAME.registerComponent('camera-reader', {
     init: function () {
       let text2 = document.querySelector('#text2');
+      let text3 = document.querySelector('#text3');
     },
     tick: function () {
-      let cameraData = {
-        rotation: this.el.object3D.rotation,
-        position: this.el.object3D.position
-      }
-      text2.setAttribute('value', JSON.stringify(cameraData))
+      text2.setAttribute('value', JSON.stringify(this.el.object3D.rotation))
+      text3.setAttribute('value', JSON.stringify(this.el.object3D.position))
     }
   })
 
@@ -77,7 +75,9 @@
 
     <a-plane material="color:black" position="0 1.5 -5" rotation="0 0 0" width="5%" height="2">
       <a-text id="text1" color="white" value="Button text" position="-2 0.5 0"></a-text>
-      <a-text id="text2" color="white" value="Camera text" position="-2 0 0" wrap-count="55%" align="left"></a-text>
+      <a-text id="text2" color="white" value="Camera rotation" position="-2 0 0" wrap-count="80%" align="left"></a-text>
+      <a-text id="text3" color="white" value="Camera position" position="-2 -0.4 0" wrap-count="55%"
+        align="left"></a-text>
     </a-plane>
 
     <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
