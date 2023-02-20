@@ -19,22 +19,25 @@
       let text1 = document.querySelector('#text1');
       let sampleBox = document.querySelector('#sampleBox');
       this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+      this.el.addEventListener('abuttondown', () => { moveBox('UP') });
+      this.el.addEventListener('bbuttondown', () => { moveBox('DOWN') });
 
       moveBox = (value) => {
         let speed = 0.1;
         let calc = {
-          DOWN: () => { sampleBox.object3D.position.z += speed; },
-          UP: () => { sampleBox.object3D.position.z -= speed },
+          BACKWARD: () => { sampleBox.object3D.position.z += speed; },
+          FORWARD: () => { sampleBox.object3D.position.z -= speed },
           LEFT: () => { sampleBox.object3D.position.x -= speed },
-          RIGHT: () => { sampleBox.object3D.position.x += speed }
+          RIGHT: () => { sampleBox.object3D.position.x += speed },
+          UP: () => { sampleBox.object3D.position.y += speed },
+          DOWN: () => { sampleBox.object3D.position.y -= speed }
         };
         calc[value]();
       }
-
     },
     logThumbstick: function (evt) {
-      if (evt.detail.y > 0.95) { text1.setAttribute('value', 'DOWN'); moveBox('DOWN'); }
-      if (evt.detail.y < -0.95) { text1.setAttribute('value', 'UP'); moveBox('UP'); }
+      if (evt.detail.y > 0.95) { text1.setAttribute('value', 'DOWN'); moveBox('BACKWARD'); }
+      if (evt.detail.y < -0.95) { text1.setAttribute('value', 'UP'); moveBox('FORWARD'); }
       if (evt.detail.x < -0.95) { text1.setAttribute('value', 'LEFT'); moveBox('LEFT'); }
       if (evt.detail.x > 0.95) { text1.setAttribute('value', 'RIGHT'); moveBox('RIGHT') }
     }
