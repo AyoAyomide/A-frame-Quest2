@@ -12,6 +12,7 @@
 
 <script>
 
+  const time = new THREE.Clock();
 
   AFRAME.registerComponent('thumbstick-logging', {
 
@@ -19,8 +20,8 @@
       let text1 = document.querySelector('#text1');
       let sampleBox = document.querySelector('#sampleBox');
       this.el.addEventListener('thumbstickmoved', this.logThumbstick);
-      this.el.addEventListener('abuttondown', () => { moveBox('UP') });
-      this.el.addEventListener('bbuttondown', () => { moveBox('DOWN') });
+      this.el.addEventListener('abuttonchanged', () => { moveBox('UP') });
+      this.el.addEventListener('bbuttonchanged', () => { moveBox('DOWN') });
 
       moveBox = (value) => {
         let speed = 0.1;
