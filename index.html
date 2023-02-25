@@ -12,7 +12,21 @@
 
 <script>
 
-let startGame = false;
+  let startGame = false;
+
+  AFRAME.registerComponent('raycaster-listen', {
+    init: function () {
+      this.el.addEventListener('raycaster-intersected', evt => {
+        this.raycaster = evt.detail.el;
+        startGame= true;
+        console.log('cats')
+      });
+      this.el.addEventListener('raycaster-intersected-cleared', evt => {
+        this.raycaster = null;
+        console.log('cats out')
+      });
+    },
+  });
 
 </script>
 
@@ -38,10 +52,17 @@ let startGame = false;
     <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
       laser-controls="hand:left"></a-entity>
     <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: right"
-      laser-controls="hand:right"></a-entity>
-    <a-camera camera-reader>
+      laser-controls="hand:right" raycaster="objects: .clickable"></a-entity>
 
-      <a-cursor id="cursor" raycaster="objects: [data-raycastable]"></a-cursor>
+
+    <a-plane class="clickable" position="2 1.5 -3" material="color:black" raycaster-listen>
+      <a-text value="Start" align="center" </a-text>
+    </a-plane>
+
+
+
+    <a-camera camera-reader>
+      <a-cursor id="cursor" raycaster="objects: .clickable"></a-cursor>
     </a-camera>
 
   </a-scene>
