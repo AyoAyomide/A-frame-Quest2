@@ -12,92 +12,33 @@
 
 <script>
 
-  const time = new THREE.Clock();
-
-  AFRAME.registerComponent('thumbstick-logging', {
-
-    init: function () {
-      let text1 = document.querySelector('#text1');
-      let sampleBox = document.querySelector('#sampleBox');
-      this.el.addEventListener('thumbstickmoved', this.logThumbstick);
-      this.el.addEventListener('abuttonchanged', () => { moveBox('UP') });
-      this.el.addEventListener('bbuttonchanged', () => { moveBox('DOWN') });
-
-      moveBox = (value) => {
-        let speed = 0.1;
-        let calc = {
-          BACKWARD: () => { sampleBox.object3D.position.z += speed; },
-          FORWARD: () => { sampleBox.object3D.position.z -= speed },
-          LEFT: () => { sampleBox.object3D.position.x -= speed },
-          RIGHT: () => { sampleBox.object3D.position.x += speed },
-          UP: () => { sampleBox.object3D.position.y += speed },
-          DOWN: () => { sampleBox.object3D.position.y -= speed }
-        };
-        calc[value]();
-      }
-    },
-    logThumbstick: function (evt) {
-      if (evt.detail.y > 0.95) { text1.setAttribute('value', 'DOWN'); moveBox('BACKWARD'); }
-      if (evt.detail.y < -0.95) { text1.setAttribute('value', 'UP'); moveBox('FORWARD'); }
-      if (evt.detail.x < -0.95) { text1.setAttribute('value', 'LEFT'); moveBox('LEFT'); }
-      if (evt.detail.x > 0.95) { text1.setAttribute('value', 'RIGHT'); moveBox('RIGHT') }
-    }
-  });
-
-  AFRAME.registerComponent('button-logging', {
-    init: function () {
-      this.el.addEventListener('triggerdown', this.logButton);
-      this.el.addEventListener('gripdown', this.logButton);
-    },
-    logButton: function (evt) {
-      let text = document.querySelector('#text1');
-      text.setAttribute('value', JSON.stringify(evt));
-    }
-  });
-
-  AFRAME.registerComponent('camera-reader', {
-    init: function () {
-      let text2 = document.querySelector('#text2');
-      let text3 = document.querySelector('#text3');
-      this.el.object3D.position.z = 2;
-    }
-  })
-
 </script>
+
+<script src="./src/js/boost.js"></script>
 
 <body>
   <a-scene renderer="antialias: true" stats environment>
 
-    <!-- <a-sky color="black"></a-sky> -->
 
-
-    <a-entity id="walls">
-      <a-plane id="wall_right" width="10" height="2.5" position="-5 1.25 -4" rotation="0 90 0"></a-plane>
-      <a-plane id="wall_left" width="10" height="2.5" position="5 1.25 -4" rotation="0 -90 0"></a-plane>
-      <a-plane id="wall_back" width="10" height="2.5" position="0 1.25 1" rotation="-180 0 0"></a-plane>
-      <a-plane id="wall_front" width="10" height="2.5" position="0 1.25 -9"></a-plane>
-    </a-entity>
-
-
-    <!-- <a-text id="text_sign" value="Hello World !!!" align="center" geometry="primitive:plane; width:5%; height:2"
-      material="color:black" position="0 1.5 -5" color="white" rotation="0 0 0"></a-text> -->
-
-    <a-plane material="color:black" position="0 4 -5" rotation="0 0 0" width="5%" height="2">
+    <!-- <a-plane material="color:black" position="0 4 -5" rotation="0 0 0" width="5%" height="2">
       <a-text id="text1" color="white" value="Button text" position="-2 0.5 0"></a-text>
       <a-text id="text2" color="white" value="Camera rotation" position="-2 0 0" wrap-count="80%" align="left"></a-text>
       <a-text id="text3" color="white" value="Camera position" position="-2 -0.4 0" wrap-count="55%"
         align="left"></a-text>
-    </a-plane>
+    </a-plane> -->
 
-    <a-box id="sampleBox" width="0.5" height="0.5" material="color:red" position="0 1 -1"></a-box>
+    <!-- <a-box id="sampleBox" width="0.5" height="0.5" material="color:red" position="0 1 -1"></a-box> -->
 
-    <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
-      laser-controls="hand:left"></a-entity>
-    <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: right"
-      laser-controls="hand:right"></a-entity>
+    <a-cylinder id="boost" boost position="0 7 -5" scale="1 14 1"></a-cylinder>
+
+
 
 
     <a-camera camera-reader>
+      <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
+        laser-controls="hand:left"></a-entity>
+      <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: right"
+        laser-controls="hand:right"></a-entity>
       <a-cursor id="cursor" raycaster="objects: [data-raycastable]"></a-cursor>
     </a-camera>
 
