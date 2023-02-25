@@ -12,6 +12,8 @@
 
 <script>
 
+let startGame = false;
+
 </script>
 
 <script src="./src/js/boost.js"></script>
@@ -29,16 +31,16 @@
 
     <!-- <a-box id="sampleBox" width="0.5" height="0.5" material="color:red" position="0 1 -1"></a-box> -->
 
-    <a-cylinder id="boost" boost position="0 7 -5" scale="1 14 1"></a-cylinder>
+    <a-cylinder id="boost" boost position="0 7 -14" scale="1 14 1"></a-cylinder>
 
 
 
-
+    <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
+      laser-controls="hand:left"></a-entity>
+    <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: right"
+      laser-controls="hand:right"></a-entity>
     <a-camera camera-reader>
-      <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: left"
-        laser-controls="hand:left"></a-entity>
-      <a-entity class="questControl" button-logging thumbstick-logging oculus-touch-controls="hand: right"
-        laser-controls="hand:right"></a-entity>
+
       <a-cursor id="cursor" raycaster="objects: [data-raycastable]"></a-cursor>
     </a-camera>
 
