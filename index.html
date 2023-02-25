@@ -13,17 +13,23 @@
 <script>
 
   let startGame = false;
+  let restartGame = false;
 
   AFRAME.registerComponent('raycaster-listen', {
     init: function () {
       this.el.addEventListener('raycaster-intersected', evt => {
-        this.raycaster = evt.detail.el;
-        startGame= true;
-        console.log('cats')
+        if (this.el.id == 'start') {
+          startGame = true;
+        }
+        if (this.el.id == 'restart') {
+          startGame = false;
+          restartGame = true;
+        }
+
       });
       this.el.addEventListener('raycaster-intersected-cleared', evt => {
         this.raycaster = null;
-        console.log('cats out')
+        restartGame = false;
       });
     },
   });
@@ -55,8 +61,11 @@
       laser-controls="hand:right" raycaster="objects: .clickable"></a-entity>
 
 
-    <a-plane class="clickable" position="2 1.5 -3" material="color:black" raycaster-listen>
+    <a-plane id="start" class="clickable" position="2 1.5 -3" material="color:black" raycaster-listen>
       <a-text value="Start" align="center" </a-text>
+    </a-plane>
+    <a-plane id="restart" class="clickable" position="-2 1.5 -3" material="color:black" raycaster-listen>
+      <a-text value=" Restart" align="center" </a-text>
     </a-plane>
 
 
