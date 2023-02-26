@@ -19,7 +19,7 @@ AFRAME.registerComponent('boost', {
         }
         if (restartGame) {
             this.speed = 0.01;
-            this.el.object3D.position.y = 21;
+            this.el.object3D.position.y = 0;
         }
     }
 })

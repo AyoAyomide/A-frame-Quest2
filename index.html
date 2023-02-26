@@ -22,6 +22,7 @@
         if (this.el.id == 'start') {
           startGame = true;
           entity.components.sound.playSound();
+          console.log(entity.components.sound);
         }
         if (this.el.id == 'restart') {
           startGame = false;
@@ -44,6 +45,7 @@
   <a-scene renderer="antialias: true" stats environment>
     <a-asset>
       <audio id="rocket" src="./asset/sounds/rocket_sound.mp3" preload="auto"></audio>
+      <a-asset-item id="rocket_model" src="./asset/model/spaceX.glb"></a-asset-item>
     </a-asset>
 
 
@@ -56,7 +58,8 @@
 
     <!-- <a-box id="sampleBox" width="0.5" height="0.5" material="color:red" position="0 1 -1"></a-box> -->
 
-    <a-cylinder id="boost" sound="src: #rocket" boost position="0 21 -14" scale="2 42 2"></a-cylinder>
+    <!-- <a-cylinder id="boost" sound="src: #rocket" boost position="0 21 -14" scale="2 42 2"></a-cylinder> -->
+    <a-entity gltf-model="#rocket_model" id="boost" sound="src: #rocket; volume:5;" boost position="0 0 -14"></a-entity>
 
 
 
