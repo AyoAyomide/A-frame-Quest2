@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A-frame</title>
+  <title>Rocket VR</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
 </head>
@@ -42,23 +42,12 @@
 <script src="./src/js/boost.js"></script>
 
 <body>
-  <a-scene renderer="antialias: true" stats environment>
+  <a-scene renderer="antialias: true" environment="preset:egypt;groundColor:#553e35;">
     <a-asset>
       <audio id="rocket" src="./asset/sounds/rocket_sound.mp3" preload="auto"></audio>
       <a-asset-item id="rocket_model" src="./asset/model/spaceX.glb"></a-asset-item>
     </a-asset>
 
-
-    <!-- <a-plane material="color:black" position="0 4 -5" rotation="0 0 0" width="5%" height="2">
-      <a-text id="text1" color="white" value="Button text" position="-2 0.5 0"></a-text>
-      <a-text id="text2" color="white" value="Camera rotation" position="-2 0 0" wrap-count="80%" align="left"></a-text>
-      <a-text id="text3" color="white" value="Camera position" position="-2 -0.4 0" wrap-count="55%"
-        align="left"></a-text>
-    </a-plane> -->
-
-    <!-- <a-box id="sampleBox" width="0.5" height="0.5" material="color:red" position="0 1 -1"></a-box> -->
-
-    <!-- <a-cylinder id="boost" sound="src: #rocket" boost position="0 21 -14" scale="2 42 2"></a-cylinder> -->
     <a-entity gltf-model="#rocket_model" id="boost" sound="src: #rocket; volume:5;" boost position="0 0 -14"></a-entity>
 
 
@@ -79,14 +68,10 @@
 
 
     <a-camera camera-reader>
-      <a-cursor id="cursor" raycaster="objects: .clickable"></a-cursor>
+      <!-- <a-cursor id="cursor" raycaster="objects: .clickable"></a-cursor> -->
     </a-camera>
 
   </a-scene>
-  <script>
-    // the controller
-    let controller = document.querySelector('.questControl');
-  </script>
 </body>
 
 </html>
