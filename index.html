@@ -9,7 +9,6 @@
   <script src="https://aframe.io/releases/1.4.0/aframe.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
 </head>
-
 <script>
 
   let startGame = false;
@@ -42,7 +41,7 @@
 <script src="./src/js/boost.js"></script>
 
 <body>
-  <a-scene renderer="antialias: true" environment="preset:egypt;groundColor:#553e35;">
+  <a-scene renderer="antialias: true" environment="preset:egypt;groundColor:#553e35;shadow:true;">
     <a-asset>
       <audio id="rocket" src="./asset/sounds/rocket_sound.mp3" preload="auto"></audio>
       <a-asset-item id="rocket_model" src="./asset/model/spaceX.glb"></a-asset-item>
