@@ -1,6 +1,6 @@
 AFRAME.registerComponent('boost', {
     init: function () {
-        this.maxSpeed = 2;
+        this.maxSpeed = 0.9;
         this.acceleration = 0.01;
         this.speed = 0.01;
 
@@ -19,7 +19,7 @@ AFRAME.registerComponent('boost', {
         }
         if (restartGame) {
             this.speed = 0.01;
-            this.el.object3D.position.y = 7;
+            this.el.object3D.position.y = 21;
         }
     }
 })
